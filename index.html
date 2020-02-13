@@ -1,7 +1,7 @@
 <html lang="en">
 
 <head>
-  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100&display=swap" rel="stylesheet">
 
 </head>
 
@@ -58,10 +58,10 @@
         time: now - startTime
       }))
 
-      bufferContext.font = "bold 80px Roboto";
+      bufferContext.font = "80px Roboto";
       bufferContext.fillStyle = 'rgb(255, 255, 255)'
 
-      bufferContext.fillText("cosine", 180, 120);
+      bufferContext.fillText("cosine", 180, 122);
 
       // swap the buffer for the viewport
       viewportContext.drawImage(bufferCanvas, 0, 0)
