@@ -17,15 +17,16 @@
     var bufferContext = bufferCanvas.getContext('2d')
 
     var drawFuncs = []
-    drawFuncs.push(createSine('rgba(0, 0, 200, 0.4)', 33, 80 + 100 * Math.random()))
-    drawFuncs.push(createSine('rgba(200, 0, 0, 0.4)', 66, 80 * 100 * Math.random()))
-    drawFuncs.push(createSine('rgba(0, 200, 0, 0.4)', 100, 80 * 100 * Math.random()))
 
-    drawFuncs.push(createSine('rgba(200, 200, 0, 0.4)', -10, 80 * 100 * Math.random()))
-    drawFuncs.push(createSine('rgba(0, 200, 200, 0.4)', -40, 80 * 100 * Math.random()))
-    drawFuncs.push(createSine('rgba(200, 0, 200, 0.4)', -70, 80 * 100 * Math.random()))
+    drawFuncs.push(createSine('rgba(0, 0, 200, 0.4)', 33, 80 + 100 * Math.random(), Math.random() - 0.5))
+    drawFuncs.push(createSine('rgba(200, 0, 0, 0.4)', 66, 80 * 100 * Math.random(), Math.random() - 0.5))
+    drawFuncs.push(createSine('rgba(0, 200, 0, 0.4)', 100, 80 * 100 * Math.random(), Math.random() - 0.5))
 
-    function createSine(colour, offset, offset2) {
+    drawFuncs.push(createSine('rgba(200, 200, 0, 0.4)', -10, -80 * 100 * Math.random(), Math.random() - 0.5))
+    drawFuncs.push(createSine('rgba(0, 200, 200, 0.4)', -40, -80 * 100 * Math.random(), Math.random() - 0.5))
+    drawFuncs.push(createSine('rgba(200, 0, 200, 0.4)', -70, -80 * 100 * Math.random(), Math.random() - 0.5))
+
+    function createSine(colour, offset, offset2, timeoffset) {
       return function (ctx) {
         var magnitude = Math.min(ctx.time / 3000, 1)
 
@@ -33,11 +34,11 @@
         ctx.buffer.moveTo(0, 100)
         ctx.buffer.beginPath()
         for (var x = 0; x < 600; x++) {
-          var y = 100 * magnitude * amp(x) * Math.cos(ctx.time / (50 * offset) + x / (5 * offset)) + 100
+          var y = 100 * magnitude * amp(x) * Math.cos(ctx.time * 2 * timeoffset / (50 * offset) + x / (5 * offset)) + 100
           ctx.buffer.lineTo(x, y)
         }
         for (var x = 600; x >= 0; x--) {
-          var y = 100 * magnitude * amp(x) * Math.cos(ctx.time / (50 * offset2) + x / (5 * offset2)) + 100
+          var y = 100 * magnitude * amp(x) * Math.cos(ctx.time * 2 * timeoffset / (50 * offset2) + x / (5 * offset2)) + 100
           ctx.buffer.lineTo(x, y)
         }
         ctx.buffer.fill()
