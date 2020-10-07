@@ -1,4 +1,5 @@
 
+function initLogo(){
   var viewportContext = document.getElementById('canvas').getContext("2d")
   var bufferCanvas = document.getElementById('buffer')
   var bufferContext = bufferCanvas.getContext('2d')
@@ -59,3 +60,4 @@
     viewportContext.drawImage(bufferCanvas, 0, 0)
     window.requestAnimationFrame(drawFrame)
   }
+}
