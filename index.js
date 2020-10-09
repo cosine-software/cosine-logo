@@ -1,4 +1,4 @@
-function initLogo(){
+function initLogo() {
   var viewportContext = document.getElementById('canvas').getContext("2d")
   var bufferCanvas = document.getElementById('buffer')
   var bufferContext = bufferCanvas.getContext('2d')
@@ -38,10 +38,8 @@ function initLogo(){
   var startTime = new Date().getTime()
   window.requestAnimationFrame(drawFrame)
   function drawFrame() {
-    // bufferContext.font = '20px Orbitron'
     bufferContext.globalCompositeOperation = 'source-over';
-    bufferContext.fillStyle = 'rgb(245, 245, 245)'
-    bufferContext.fillRect(0, 0, 600, 200)
+    bufferContext.clearRect(0, 0, 600, 200)
     bufferContext.globalCompositeOperation = 'color-burn';
 
     var now = new Date().getTime()
@@ -58,6 +56,8 @@ function initLogo(){
     bufferContext.fillText("cosine", 180, 120);
 
     // swap the buffer for the viewport
+    viewportContext.globalCompositeOperation = 'source-over';
+    viewportContext.clearRect(0, 0, 600, 200)
     viewportContext.drawImage(bufferCanvas, 0, 0)
     window.requestAnimationFrame(drawFrame)
   }
