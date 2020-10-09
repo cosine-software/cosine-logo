@@ -1,4 +1,3 @@
-
 function initLogo(){
   var viewportContext = document.getElementById('canvas').getContext("2d")
   var bufferCanvas = document.getElementById('buffer')
@@ -41,15 +40,17 @@ function initLogo(){
   function drawFrame() {
     // bufferContext.font = '20px Orbitron'
     bufferContext.globalCompositeOperation = 'source-over';
-    bufferContext.fillStyle = 'rgb(255, 255, 255)'
+    bufferContext.fillStyle = 'rgb(245, 245, 245)'
     bufferContext.fillRect(0, 0, 600, 200)
-    bufferContext.globalCompositeOperation = 'darker';
+    bufferContext.globalCompositeOperation = 'color-burn';
 
     var now = new Date().getTime()
     drawFuncs.forEach(x => x({
       buffer: bufferContext,
       time: now - startTime
     }))
+
+    bufferContext.globalCompositeOperation = 'hard-light';
 
     bufferContext.font = "bold 80px Roboto";
     bufferContext.fillStyle = 'rgb(255, 255, 255)'
