@@ -1,4 +1,5 @@
 function initLogo() {
+    var favicon = document.getElementById('favicon');
     var viewportContext = document.getElementById('canvas').getContext("2d")
     var bufferCanvas = document.getElementById('buffer')
     var bufferContext = bufferCanvas.getContext('2d')
@@ -61,6 +62,7 @@ function initLogo() {
         viewportContext.globalCompositeOperation = 'source-over';
         viewportContext.clearRect(0, 0, 600, 200)
         viewportContext.drawImage(bufferCanvas, 0, 0)
+        favicon.href = bufferCanvas.toDataURL('image/png');
         window.requestAnimationFrame(drawFrame)
     }
 }
